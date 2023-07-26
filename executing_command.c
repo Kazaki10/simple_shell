@@ -70,6 +70,7 @@ return (0);
  * path_adder - adds path to command
  * @path: path of the command
  * @cmvd: user-entered command
+ * Return: buffer.
  */
 char *path_adder(char *path, char *cmvd)
 {

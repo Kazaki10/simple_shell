@@ -4,6 +4,7 @@
  * built_handler - handles execution of built-in functions
  * @cmvd: cmd token
  * @string: input read from std
+ * Return: 0 sucess.
  */
 int built_handler(char **cmvd, char *string)
 {
