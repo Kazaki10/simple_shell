@@ -1,6 +1,6 @@
 #include "our_shell.h"
 
-/**
+/*
  *
  *execut_exter_cmd - Executes an external command
  *@cmd: The command name
