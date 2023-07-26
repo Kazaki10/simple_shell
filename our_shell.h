@@ -70,5 +70,8 @@ int line_c;
 
 extern char **environ;
 extern __sighandler_t signal(int __sig, __sighandler_t __handler);
+/* Function Prototypes */
+void handle_exit(char **args);
+
 
 #endif
