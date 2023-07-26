@@ -13,14 +13,14 @@
 #include <stdbool.h>
 
 /* handle built ins */
-int checker(char **uti, char *tokens);
+int check(char **cmd, char *buf);
 void print_promp(void);
 void sig_handler(int m);
 char **tkn_iz(char *line);
-char *path_checker(char **path, char *cmd);
-char *path_adding(char *path, char *uti);
+char *path_tester(char **path, char *command);
+char *path_adder(char *path, char *command);
 int built_handler(char **command, char *line);
-void exiting_cmd(char **tcmd, char *stn);
+void cmd_exiter(char **command, char *line);
 void env_printer(void);
 
 /**
@@ -37,7 +37,7 @@ bool acti;
 
 void buff_free(char **buf);
 
-void cmd_execute(char *pcm, char **vra);
+void execute(char *cp, char **cmd);
 char *path_finder(void);
 
 /**
