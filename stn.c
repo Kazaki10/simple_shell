@@ -1,7 +1,7 @@
 #include "our_shell.h"
 
 /**
- * prints_promp - prints the prompt symbol ($)
+ * print_promp - prints the prompt symbol ($)
  * If the shell is in interactive mode
  *	prints the prompt symbol to the standard error file descriptor
  */
