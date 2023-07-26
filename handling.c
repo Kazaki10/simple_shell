@@ -6,7 +6,7 @@
  * @string: input read from stdin
  *
  * This function compares the first command token with the built-in functions.
- * If a match is found, it calls the corresponding pre-built in handler function.
+ * If a match is found, it calls the corresponding built in handler function.
  *
  * Return: 1 if executed, 0 if not
  */
