@@ -18,11 +18,6 @@
 #define READ_BUF_SIZE 1024
 #define WRITE_BUF_SIZE 1024
 
-/*external variables*/
-extern char **environ;
-int should_exit;
-char *path_var;
-
 /* Function Prototypes */
 void handle_cd(char **args);
 void execute_builtin_cmvd(char **args);
@@ -56,6 +51,11 @@ int	my_strlen(char *s);
 char *my_strchr(const char *s, char c);
 char *_getenv(const char *token);
 char *our_getline(void);
+
+/*external variables*/
+extern char **environ;
+int should_exit;
+char *path_var;
 
 
 #endif
