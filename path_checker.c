@@ -1,41 +1,41 @@
 #include "our_shell.h"
 
 /**
- * path_checker - checks if the path is valid or not.
- * @path: path tokened.
- * @cmd: Users command input.
- * Return: path conjoin with command on success
+ * path_tester - checks whether the path is valid
+ * @path: tokenized path
+ * @command: user entered command
+ * Return: path appended with command on success
 */
-char *path_checker(char **path, char *cmd)
+char *path_tester(char **path, char *command)
 {
-int x = 0;
+int z = 0;
 char *output;
 
-while (path[x])
+while (path[z])
 {
-output = path_adder(path[x], cmd);
+output = path_adder(path[z], command);
 if (access(output, F_OK | X_OK) == 0)
 return (output);
 free(output);
-x++;
+z++;
 }
 return (NULL);
 }
 
 /**
- * tok_ner - creates tokens from given input
- * @st: input string to transform into token
+ * tkn_iz - creates tokens from the given input string
+ * @str: input string to be tokenized
  *
  * Return: array of strings
 */
-char **tok_ner(char *st)
+char **tkn_iz(char *str)
 {
 char *buffer = NULL, *bvp = NULL, *item = NULL, *mem = " :\t\r\n";
-char **cmvd = NULL;
+char **cmvvd = NULL;
 int sizetkn = 1;
 size_t indice = 0, flag = 0;
 
-buffer = strdup(st);
+buffer = strdup(str);
 if (!buffer)
 return (NULL);
 bvp = buffer;
@@ -51,20 +51,20 @@ else if (strchr(mem, *bvp) == NULL && flag == 1)
 flag = 0;
 bvp++;
 }
-cmvd = malloc(sizeof(char *) * (sizetkn + 1));
+cmvvd = malloc(sizeof(char *) * (sizetkn + 1));
 item = strtok(buffer, mem);
 while (item)
 {
-cmvd[indice] = strdup(item);
-if (cmvd[indice] == NULL)
+cmvvd[indice] = strdup(item);
+if (cmvvd[indice] == NULL)
 {
-free(cmvd);
+free(cmvvd);
 return (NULL);
 }
 item = strtok(NULL, mem);
 indice++;
 }
-cmvd[indice] = '\0';
+cmvvd[indice] = '\0';
 free(buffer);
-return (cmvd);
+return (cmvvd);
 }
