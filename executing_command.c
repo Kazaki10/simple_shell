@@ -2,64 +2,63 @@
 
 
 /**
- * exiting_cmd - Handle the exit mechanism
- * @tcmd: The token command
- * @stn: Input that  read from stdin
- *  function that frees the allocated memory and exit program.
+ * cmd_exiter - handles exit commands
+ * @cmvd: command tokens
+ * @str: input from std
+ *
  */
-void exiting_cmd(char **tcmd, char *stn)
+void cmd_exiter(char **cmvd, char *str)
 {
-free(stn);
-buff_free(tcmd);
+free(str);
+buff_free(cmvd);
 exit(0);
 }
 
 #include "our_shell.h"
 
 /**
- * cmd_execute - executes a command
- * @pcm: cmd pathway
- * @vra: array of command arguments
- * waits for the child process to finish before the return.
+ * execute - executes  command
+ * @cp: the command path
+ * @cmd:  array of command argument
+ *
  */
-void cmd_execute(char *pcm, char **vra)
+void execute(char *cp, char **cmd)
 {
 pid_t _pid;
-int tokens;
+int token;
 char **env = environ;
 
 _pid = fork();
 if (_pid < 0)
 {
-perror(pcm);
+perror(cp);
 }
 if (_pid == 0)
 {
-execve(pcm, vra, env);
-perror(pcm);
-free(pcm);
-buff_free(vra);
+execve(cp, cmd, env);
+perror(cp);
+free(cp);
+buff_free(cmd);
 exit(98);
 }
 else
-wait(&tokens);
+wait(&token);
 }
 
 #include "our_shell.h"
 /**
- * checker - a checker that checks if its a built-in function.
- * @uti: user token inputs.
- * @tokens: getline function
- *
- * Return: 1 on success, and 0 on fail.
+ * check - checks whether it is built-in function
+ * @cmvd: user token inputs
+ * @token: getline function
+ * Return: 1 on success, 0 on failure
  */
-int checker(char **uti, char *tokens)
+int check(char **cmvd, char *token)
 {
-if (built_handler(uti, tokens))
+if (built_handler(cmvd, token))
 return (1);
-else if (**uti == '/')
+else if (**cmvd == '/')
 {
-execute(uti[0], uti);
+execute(cmvd[0], cmvd);
 return (1);
 }
 return (0);
@@ -68,25 +67,22 @@ return (0);
 #include "our_shell.h"
 
 /**
- * path_adding - adds a  path to commands
- * @path: path of given command
- * @uti: user-entered command
- *
- * Return: buffer containing the  path and command
- * OR NULL if memory allocation fails
+ * path_adder - adds path to command
+ * @path: path of the command
+ * @cmvd: user-entered command
  */
-char *path_adding(char *path, char *uti)
+char *path_adder(char *path, char *cmvd)
 {
 char *buffer;
 size_t a = 0, b = 0;
 
-if (uti == 0)
-uti = "";
+if (cmvd == 0)
+cmvd = "";
 
 if (path == 0)
 path = "";
 
-buffer = malloc(sizeof(char) * (strlen(path) + strlen(uti) + 2));
+buffer = malloc(sizeof(char) * (strlen(path) + strlen(cmvd) + 2));
 if (!buffer)
 return (NULL);
 
@@ -101,9 +97,9 @@ if (path[a - 1] != '/')
 buffer[a] = '/';
 a++;
 }
-while (uti[b])
+while (cmvd[b])
 {
-buffer[a + b] = uti[b];
+buffer[a + b] = cmvd[b];
 b++;
 }
 buffer[a + b] = '\0';
