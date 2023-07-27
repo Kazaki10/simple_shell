@@ -72,12 +72,4 @@ extern char **environ;
 extern __sighandler_t signal(int __sig, __sighandler_t __handler);
 /* Function Prototypes */
 void handle_exit(char **args);
-
-nt print_alias(data_of_program *data, char *alias);
-
-/* get the alias name */
-char *get_alias(data_of_program *data, char *alias);
-
-/* set the alias name */
-int set_alias(char *alias_string, data_of_program *data);
 #endif
